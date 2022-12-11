@@ -9,7 +9,7 @@ async function main() {
     console.log(`The address is: ${HelloWorld.address}`);
     let message = await HelloWorld.getMessage();
     console.log(`The old message is: ${message}`);
-    const tx = await HelloWorld.setMessage("Pele");
+    const tx = await HelloWorld.setMessage("Ortega");
     await tx.wait();
     message = await HelloWorld.getMessage();
     console.log(`The new message is: ${message}`);

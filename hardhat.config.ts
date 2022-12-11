@@ -1,44 +1,28 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const fs = require('fs');
-
-let privateKey
-try {
-  privateKey = fs.readFileSync(".env").toString().trim();
-} catch {
-  console.log("No .env file found. Please create one with your privateKey phrase.")
-}
-
-module.exports = {
-  defaultNetwork: "goerli",
+const config: HardhatUserConfig = {
+  solidity: {
+    compilers: [
+      {
+        version: "0.8.9",
+        settings: {
+          optimizer: { enabled: true, runs: 200 }
+        }
+      },
+    ]
+  },
   networks: {
-    hardhat: {
-    },
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
-      accounts: [privateKey]
+      accounts: [process.env.PRIVATE_KEY]
     }
-  },
-  solidity: {
-    version: "0.8.17",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  },
-  paths: {
-    sources: "./contracts",
-    tests: "./test",
-    cache: "./cache",
-    artifacts: "./artifacts"
   },
   mocha: {
-    timeout: 40000
-  }
-}
+    timeout: 100000000
+  },
+};
 
-
-export default module.exports as HardhatUserConfig;
+export default config;
