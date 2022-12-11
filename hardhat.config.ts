@@ -15,10 +15,6 @@ module.exports = {
   networks: {
     hardhat: {
     },
-    goerli: {
-      url: "https://goerli.infura.io/v3/309820d3955640ec9cda472d998479ef",
-      accounts: [privateKey]
-    },
     mumbai: {
       url: "https://rpc-mumbai.maticvigil.com",
       accounts: [privateKey]
